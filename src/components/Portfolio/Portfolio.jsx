@@ -10,20 +10,34 @@ import { themeContext } from "../../Context";
 const Portfolio = () => {
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
+  const image = [
+    {
+      img: Sidebar
+    },
+    {
+      img: Ecommerce
+    },
+    {
+      img: HOC
+    },
+    {
+      img: MusicApp
+    }
+  ]
   return (
     <div className="portfolio" id="portfolio">
       {/* heading */}
-      <span style={{color: darkMode?'white': ''}}>Recent Projects</span>
+      <span style={{ color: darkMode ? 'white' : '' }}>Recent Projects</span>
       <span>Portfolio</span>
 
       {/* slider */}
       <Swiper
-        spaceBetween={30}
+        spaceBetween={40}
         slidesPerView={3}
         grabCursor={true}
         className="portfolio-slider"
       >
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <img src={Sidebar} alt="" />
         </SwiperSlide>
         <SwiperSlide>
@@ -34,7 +48,14 @@ const Portfolio = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={HOC} alt="" />
-        </SwiperSlide>
+        </SwiperSlide> */}
+        {
+          image.map((portfolio,index)=>{
+            return (<SwiperSlide key={index}>
+              <img src={portfolio.img} alt="" />
+            </SwiperSlide>
+          )})
+        }
       </Swiper>
     </div>
   );

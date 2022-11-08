@@ -7,7 +7,7 @@ import Shopify from "../../img/Shopify.png";
 import Facebook from "../../img/Facebook.png";
 import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
-import {Link} from 'react-scroll'
+import { Link } from 'react-scroll'
 const Works = () => {
   // context
   const theme = useContext(themeContext);
@@ -61,7 +61,7 @@ const Works = () => {
           </div>
           <div className="w-secCircle">
             <img src={Amazon} alt="" />
-          </div>{" "}
+          </div>
           <div className="w-secCircle">
             <img src={Shopify} alt="" />
           </div>

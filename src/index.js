@@ -4,9 +4,11 @@ import App from './App';
 import { ThemeProvider } from './Context';
 
 ReactDOM.render(
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>,
+  <React.StrictMode>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

@@ -1,15 +1,19 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Contact.css";
 import emailjs from "@emailjs/browser";
 import { themeContext } from "../../Context";
 import swal from 'sweetalert'
 import loading from '../../gif/loading.gif'
+import { useRef } from "react";
 const Contact = () => {
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
-  const form = useRef();
-
+  const form = useRef()
+  const [value, setvalue] = useState({ from_name: '', from_email: '', message: '' });
   const [load, setload] = useState(false);
+  const handleChange = (e) => {
+    setvalue({ ...value, [e.target.name]: e.target.value });
+  }
   const sendEmail = async (e) => {
     e.preventDefault();
     setload(true);
@@ -17,9 +21,12 @@ const Contact = () => {
     if (email.status === 200) {
       swal("Thank you!", "We Will Reply You As soon As Possible!", "success");
       setload(false)
-      form.reset();
+      setvalue({ from_name: '', from_email: '', message: '' })
     }
-
+    else {
+      swal("Sorry :(", "Please Try Again Letter", "warning");
+      setload(false)
+    }
   };
 
   return (
@@ -37,11 +44,11 @@ const Contact = () => {
       </div>
       {/* right side form */}
       <div className="c-right">
-        <form ref={form} onSubmit={sendEmail}>
-          <input type="text" name="from_name" className="user" placeholder="Name" />
-          <input type="email" name="from_email" className="user" placeholder="Email" />
-          <textarea name="message" className="user" placeholder="Message" />
-          <input type="submit" className="button " />
+        <form onSubmit={sendEmail} ref={form} >
+          <input type="text" name="from_name" className="user" placeholder="Name" value={value.from_name} onChange={handleChange} required={true} />
+          <input type="email" name="from_email" className="user" placeholder="Email" value={value.from_email} onChange={handleChange} required={true} />
+          <textarea name="message" className="user" placeholder="Message" value={value.message} onChange={handleChange} required={true} />
+          <input type="submit" value="Submit" className="button" />
           <span className="loading">{load ? <img src={loading} alt="" /> : ''}</span>
           <div
             className="blur c-blur1"

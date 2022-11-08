@@ -46,7 +46,7 @@ height: 40px;
  width: 40px;
  position: relative;
  top: -15px; 
-/* transform:scale(0.09) ; */
+
 }
 
 @media screen and (max-width: 480px) {
